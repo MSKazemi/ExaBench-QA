@@ -98,5 +98,3 @@
 
 ---
 
-📄 **Suggested filename:**  
-`hpc_system_designers_query_taxonomy.md`
