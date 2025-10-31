@@ -1,0 +1,72 @@
+{
+// ===================================================================
+// HPC Query Schema
+// -------------------------------------------------------------------
+// Each query entry (Q###) represents one general query template.
+// - The "variants" array may include ALL or ONLY SOME of the 5 user types:
+//   ["Normal HPC User", "HPC Researcher", "System Administrator", "Facility Admin", "System Designer"]
+// - You can omit irrelevant user types for a given query.
+// - The "roles_covered" field summarizes which roles are included in variants[].
+// ===================================================================
+
+    "id": "Q###",
+    "query_template": "Write the general form of the question here, e.g. 'How much energy is consumed over a given period of time?'",
+    "category": "High-level functional area (e.g., Energy Monitoring, Job Management, Anomaly Detection, Cooling Efficiency, Topology, Reliability, etc.)",
+    "description": "Optional short explanation of what this query investigates, measures, or why users ask it.",
+    "roles_covered": [
+      "Normal HPC User",
+      "HPC Researcher",
+      "System Administrator",
+      "Facility Admin",
+      "System Designer"
+    ],
+    "difficulty": "basic | intermediate | advanced",
+    "variants": [
+      {
+        "user_type": "Normal HPC User",
+        "intent": "Explain what this query means for a normal user (e.g., monitor energy usage of their own jobs).",
+        "data_scope": "User-level scope (e.g., personal jobs, projects, storage quota).",
+        "data_sources": ["SLURM", "stdout/stderr", "IPMI"],
+        "expected_output": "Describe what the system should return (e.g., energy per job, runtime table, or chart).",
+        "example_query": "Concrete example question phrased by a normal user.",
+        "tags": ["user", "job", "energy", "example"]
+      },
+      {
+        "user_type": "HPC Researcher",
+        "intent": "Describe the research goal (e.g., correlate power consumption with temperature or job type).",
+        "data_scope": "Experiment subset or historical cluster data used for analysis.",
+        "data_sources": ["Prometheus", "ExaMon", "SLURM"],
+        "expected_output": "Describe outputs such as datasets, correlations, or statistical summaries.",
+        "example_query": "Concrete example question phrased by a researcher.",
+        "tags": ["research", "analysis", "correlation"]
+      },
+      {
+        "user_type": "System Administrator",
+        "intent": "Explain the operational goal (e.g., detect high power usage across nodes).",
+        "data_scope": "Cluster- or partition-level telemetry.",
+        "data_sources": ["Prometheus", "IPMI", "Nagios"],
+        "expected_output": "Describe aggregated results, alerts, or metrics tables.",
+        "example_query": "Concrete example question phrased by a system administrator.",
+        "tags": ["admin", "monitoring", "operations"]
+      },
+      {
+        "user_type": "Facility Admin",
+        "intent": "Explain facility-level focus (e.g., cooling power efficiency or PUE).",
+        "data_scope": "Facility sensors, CRACs, chillers, PDUs.",
+        "data_sources": ["Logics", "Schneider", "Vertiv"],
+        "expected_output": "Describe metrics like IT vs cooling power, temperature gradients, or PUE.",
+        "example_query": "Concrete example question phrased by a facility admin.",
+        "tags": ["facility", "cooling", "PUE"]
+      },
+      {
+        "user_type": "System Designer",
+        "intent": "Explain design-level focus (e.g., simulate impact of adding GPUs or new cooling design).",
+        "data_scope": "Model-based or simulated data using historical metrics.",
+        "data_sources": ["Design Model", "Historical DB", "Power Simulator"],
+        "expected_output": "Describe predicted values, comparison charts, or optimization metrics.",
+        "example_query": "Concrete example question phrased by a system designer.",
+        "tags": ["design", "simulation", "forecast"]
+      }
+    ]
+  }
+  

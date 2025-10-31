@@ -1,124 +1,116 @@
-# 🧠 HPC User Query Taxonomy  
-## User Type: **System Administrators**
+# 🧠 HPC System Administrators
+
+## **Primary Mission**
+- Ensure reliability, performance, and security of large-scale HPC clusters.
+- Manage compute, storage, and network infrastructure supporting scientific workloads.
+- Maintain job schedulers, user access, and system health across heterogeneous hardware.
+- Enable smooth coordination between compute systems, facility environments, and AIOps agents.
 
 ---
 
-## 1️⃣ Category List (High-Level Overview)
-
-1. Cluster Resource Management (H)
-2. User & Access Management (H)
-3. Job Scheduling & Queue Control (H)
-4. Monitoring & Health Status (H)
-5. Performance & Utilization Analysis (H)
-6. Storage & Filesystem Management (H)
-7. Network & Interconnect Diagnostics (M)
-8. Security & Compliance (H)
-9. Software Environment & Modules (H)
-10. Node Maintenance & Lifecycle (H)
-11. Power & Thermal Management (M)
-12. Facility & Infrastructure Awareness (M)
-13. Backup & Disaster Recovery (L)
-14. Automation & Scripting Assistance (H)
-15. Logs, Alerts, and Troubleshooting (H)
-16. Documentation & Admin Support (M)
-17. Integration & API Management (L)
-18. License and Quota Management (M)
-19. AI/LLM Agent Configuration & Policy (L)
-20. User Support & Incident Response (H)
+## **Core Tasks & Responsibilities**
+- Manage user accounts, permissions, and access policies (LDAP, SSH, groups).
+- Monitor and maintain compute nodes, GPUs, interconnects, and storage systems.
+- Oversee job scheduling, queue control, and resource allocation (SLURM/PBS).
+- Troubleshoot performance degradation and system failures.
+- Maintain OS images, firmware, and configuration management.
+- Track energy, power, and cooling parameters for operational sustainability.
+- Ensure system compliance, backups, and data protection.
+- Support automation, scripting, and AI-based observability tools.
 
 ---
 
-## 2️⃣ Detailed Table Version
-
-| Category | Description | Example Queries | Agent(s) to Fulfill Request |
-|-----------|--------------|-----------------|-----------------------------|
-| **Cluster Resource Management** | Manage compute, GPU, and storage resources across partitions or queues | “Show node allocation per partition.” / “Resize compute node pool.” / “Drain node n101.” / “Show available GPUs in queue gpu_long.” | HPC Job Executer, ExaSage Monitoring |
-| **User & Access Management** | Control users, groups, SSH access, LDAP, and privileges | “Add user alice to group decice.” / “List inactive users.” / “Rotate SSH keys for all admins.” | Admin Agent, RAG (docs), Control |
-| **Job Scheduling & Queue Control** | Monitor and control job queues, SLURM/PBS scheduler state | “Pause queue gpu_long.” / “Cancel all jobs from user test.” / “Reprioritize job 52432.” | Job Executer, ExaSage Monitoring |
-| **Monitoring & Health Status** | Real-time node, GPU, network, and service health | “Show failed nodes in last 24h.” / “Check GPU utilization trends.” / “List nodes with ECC errors.” | ExaSage Monitoring Agent |
-| **Performance & Utilization Analysis** | Aggregate metrics: CPU load, I/O, job efficiency | “Top 10 users by CPU usage.” / “Average MPI job efficiency this week.” / “Detect underutilized nodes.” | Data Analytics, Monitoring |
-| **Storage & Filesystem Management** | Lustre, BeeGFS, Ceph, NFS operations and usage checks | “Show OST usage by project.” / “Check I/O throughput per user.” / “Mount new filesystem.” | Admin Agent, Monitoring |
-| **Network & Interconnect Diagnostics** | InfiniBand/Fabric performance and errors | “Show latency per switch.” / “List ports with packet drops.” / “Monitor Mellanox counters.” | Facility Agent, Monitoring |
-| **Security & Compliance** | Ensure proper configs, updates, and access policies | “Audit sudo access.” / “List failed login attempts.” / “Check CIS compliance.” | Admin Agent, RAG |
-| **Software Environment & Modules** | Manage loaded modules, environments, containers | “List loaded modules for user bob.” / “Add new module OpenMPI 5.0.” / “Check Spack installation logs.” | RAG Agent, Control |
-| **Node Maintenance & Lifecycle** | Provision, decommission, or reboot nodes | “Reboot node n102.” / “Mark node n108 as maintenance.” / “Check BIOS/IPMI firmware versions.” | Control, Facility Agent |
-| **Power & Thermal Management** | Analyze rack/pod energy use and thermal maps | “Average rack power for R5.” / “Detect overheating nodes.” / “List top 5 high-energy jobs.” | Facility Agent, Monitoring |
-| **Facility & Infrastructure Awareness** | Map system racks, cooling zones, power feeds | “Show spatial layout of racks in room A.” / “Which racks share PDU B4?” | Facility Agent |
-| **Backup & Disaster Recovery** | Manage snapshots and restoration procedures | “Check backup status for /home.” / “Restore /projects/decice.” | Admin Agent |
-| **Automation & Scripting Assistance** | Auto-generate shell or SLURM scripts | “Generate SLURM restart script for failed jobs.” / “Automate GPU utilization report.” | RAG + Code Agent |
-| **Logs, Alerts, and Troubleshooting** | Query logs, system alerts, failed service states | “Show dmesg logs for node n107.” / “Which jobs failed due to OOM?” | ExaSage Monitoring, RAG |
-| **Documentation & Admin Support** | Retrieve admin SOPs, wiki, or procedure docs | “How to reset a failed SLURM node?” / “Procedure to replace GPU.” | RAG Agent |
-| **Integration & API Management** | Manage APIs, webhooks, Grafana/Prometheus links | “List all Prometheus targets.” / “Check API token validity.” | RAG Agent, Admin Agent |
-| **License and Quota Management** | Monitor license usage and user quotas | “Check ANSYS license usage.” / “Set 10TB quota for project UC3.” | Control, Monitoring |
-| **AI/LLM Agent Configuration & Policy** | Manage HPC AI assistant permissions | “Limit monitoring data to admins.” / “Review LLM privacy policies.” | Admin Agent |
-| **User Support & Incident Response** | Track incidents, notify users, resolve issues | “List all open tickets.” / “Notify users about downtime.” | Admin Agent, RAG |
+## **Key Studies / Knowledge Areas**
+- HPC job schedulers (SLURM, PBS, LSF)
+- Parallel computing and MPI/OpenMP behavior
+- Linux system administration and shell scripting
+- Cluster monitoring, telemetry, and alerting (Prometheus, Grafana)
+- File systems (Lustre, BeeGFS, Ceph, NFS)
+- Networking and InfiniBand diagnostics
+- Security and compliance frameworks (CIS, ISO, GDPR)
+- Configuration and automation tools (Ansible, Terraform)
+- Power management, IPMI, and node telemetry analytics
 
 ---
 
-## 3️⃣ Permissions & Access Control Notes
-
-| Level | Description | Relevant Categories |
-|--------|--------------|---------------------|
-| **Admin / Elevated** | Full system privileges needed | Resource Management, User Management, Node Maintenance, Security, Backup, Integration |
-| **Operator / Limited** | Monitoring, diagnostics, read-only analytics | Monitoring, Performance Analysis, Facility Awareness |
-| **User / General** | Access to documentation or read-only queries | Docs & Support, Scripting Help |
-| **Security Cautions** | Agent responses involving config changes, SSH, LDAP, or job cancellation must route through **authenticated Admin Control Path** with audit logging |
-
----
-
-## 4️⃣ Extended Example Questions Corpus (≥25)
-
-1. “Which nodes are currently offline or drained?”
-2. “Show me top 10 jobs by memory usage today.”
-3. “What’s the GPU error rate trend on rack A2?”
-4. “List users who haven’t logged in for 30 days.”
-5. “Restart SLURM controller service.”
-6. “Check job 54231 efficiency breakdown.”
-7. “Update BIOS firmware on nodes n120–n125.”
-8. “Which filesystem is 90% full?”
-9. “Show network latency matrix for InfiniBand switches.”
-10. “Monitor fan speed anomalies.”
-11. “Who is using more than 5TB in /scratch?”
-12. “List failed login attempts from unknown IPs.”
-13. “Audit sudoers configuration.”
-14. “Generate daily power consumption report.”
-15. “What is causing the SLURM queue to be blocked?”
-16. “Show historical CPU utilization for the past week.”
-17. “Predict next cooling alert based on current rack temps.”
-18. “Create an automated backup schedule for /projects.”
-19. “Which node had kernel panic yesterday?”
-20. “Compare CPU temperature of n107 and n108.”
-21. “Show module dependencies for OpenFOAM.”
-22. “Send system maintenance notice to all users.”
-23. “Enable maintenance mode for GPU partition.”
-24. “Detect thermal hotspots using IPMI sensor data.”
-25. “Summarize performance anomalies from last night’s run.”
+## **Data Sources They Analyze**
+- Node and job metrics (CPU, GPU, I/O, memory, network)
+- Scheduler logs and accounting data
+- System and kernel logs (syslog, dmesg)
+- Storage and filesystem telemetry (OST, MDT statistics)
+- Facility data (IPMI, PDU, CRAC, BMS telemetry)
+- Security and authentication logs
+- User activity and quota databases
 
 ---
 
-## 5️⃣ Priority Tags (Summary)
-
-| Category | Priority |
-|-----------|-----------|
-| Cluster Resource Management | H |
-| User & Access Management | H |
-| Job Scheduling & Queue Control | H |
-| Monitoring & Health Status | H |
-| Performance & Utilization Analysis | H |
-| Storage & Filesystem Management | H |
-| Network & Interconnect Diagnostics | M |
-| Security & Compliance | H |
-| Software Environment & Modules | H |
-| Node Maintenance & Lifecycle | H |
-| Power & Thermal Management | M |
-| Facility & Infrastructure Awareness | M |
-| Backup & Disaster Recovery | L |
-| Automation & Scripting Assistance | H |
-| Logs, Alerts, and Troubleshooting | H |
-| Documentation & Admin Support | M |
-| Integration & API Management | L |
-| License and Quota Management | M |
-| AI/LLM Agent Configuration & Policy | L |
-| User Support & Incident Response | H |
+## **Tools & Frameworks**
+- SLURM / PBS / LSF job schedulers  
+- Prometheus, Grafana, Elastic Stack, InfluxDB  
+- IPMI, Redfish, SNMP, DCIM systems  
+- Ansible, Terraform, Spack, Singularity, Docker  
+- Lustre / BeeGFS / Ceph / NFS file systems  
+- Python, Bash, PowerShell for automation  
+- ExaSage, KubeIntellect, ThermADNet for AI-driven observability  
+- Monitoring dashboards, REST APIs, and alerting systems
 
 ---
+
+## **Research Themes / Study Topics**
+- Cluster performance optimization and utilization efficiency
+- Predictive maintenance and fault detection
+- Energy- and thermal-aware operations
+- Job scheduling fairness and resource balancing
+- Automation of provisioning and configuration management
+- Integration of AI/LLM agents for intelligent operations
+- Compliance, security audits, and access governance
+- Resilience, recovery, and disaster preparedness
+
+---
+
+## **Example Queries for Multi-Agentic Chat System**
+
+| # | Code | Category | Description | Example Queries | Priority |
+|---|------|-----------|--------------|-----------------|-----------|
+| 1 | **JOB** | **Job & Workflow Management** | Manage queues, monitor job states, reprioritize workloads. | “Pause queue gpu_long.”<br>“Cancel all jobs from user test.” | **H** |
+| 2 | **RES** | **Cluster Resource Management** | Control compute/GPU/storage resources and partitions. | “Show node allocation per partition.”<br>“Drain node n101.” | **H** |
+| 3 | **USER** | **User & Access Management** | Manage accounts, groups, and privileges. | “Add user alice to group decice.”<br>“List inactive users.” | **H** |
+| 4 | **MON** | **Monitoring & Health Status** | Observe system state, detect failures, visualize trends. | “Show failed nodes in last 24h.”<br>“Check GPU utilization trends.” | **H** |
+| 5 | **PERF** | **Performance & Utilization Analysis** | Analyze efficiency, CPU/GPU load, I/O, and bottlenecks. | “Top 10 users by CPU usage.”<br>“Detect underutilized nodes.” | **H** |
+| 6 | **STOR** | **Data & Storage Management** | Manage file systems, quotas, and I/O performance. | “Show OST usage by project.”<br>“Check I/O throughput per user.” | **H** |
+| 7 | **NET** | **Network & Interconnect Diagnostics** | Inspect InfiniBand/Fabric status and connectivity. | “List ports with packet drops.”<br>“Show latency per switch.” | **M** |
+| 8 | **SEC** | **Security & Compliance** | Audit access, check vulnerabilities, apply security policies. | “Audit sudo access.”<br>“List failed login attempts.” | **H** |
+| 9 | **SWENV** | **Software Environment & Modules** | Manage modules, containers, compilers, and Spack builds. | “List loaded modules for user bob.”<br>“Add new module OpenMPI 5.0.” | **H** |
+| 10 | **NODE** | **Node Maintenance & Lifecycle** | Provision, reboot, or decommission compute nodes. | “Reboot node n102.”<br>“Mark node n108 as maintenance.” | **H** |
+| 11 | **ENERGY** | **Power, Energy & Thermal Management** | Track energy efficiency and temperature conditions. | “Average rack power for R5.”<br>“Detect overheating nodes.” | **M** |
+| 12 | **FAC** | **Facility & Infrastructure Awareness** | Integrate facility data: racks, PDUs, zones, sensors. | “Show spatial layout of racks in room A.”<br>“Which racks share PDU B4?” | **M** |
+| 13 | **BACKUP** | **Backup & Disaster Recovery** | Manage data snapshots and recovery operations. | “Check backup status for /home.”<br>“Restore /projects/decice.” | **L** |
+| 14 | **AUTO** | **Automation & Scripting Assistance** | Generate scripts and automate routine admin tasks. | “Generate SLURM restart script.”<br>“Automate GPU utilization report.” | **H** |
+| 15 | **LOGS** | **Logs, Alerts & Troubleshooting** | Query logs and alert streams for failures or anomalies. | “Show dmesg logs for node n107.”<br>“Which jobs failed due to OOM?” | **H** |
+| 16 | **DOCS** | **Documentation & Admin Support** | Retrieve SOPs, manuals, and wiki procedures. | “How to reset a failed SLURM node?”<br>“Procedure to replace GPU.” | **M** |
+| 17 | **API** | **Integration & API Management** | Manage Prometheus/Grafana endpoints, webhooks, APIs. | “List all Prometheus targets.”<br>“Check API token validity.” | **L** |
+| 18 | **LIC** | **License & Quota Management** | Monitor license usage and enforce user quotas. | “Check ANSYS license usage.”<br>“Set 10TB quota for project UC3.” | **M** |
+| 19 | **AIOPS** | **AI & Intelligent Operations** | Manage and validate AI/LLM agents and policy integration. | “Limit monitoring data to admins.”<br>“Review LLM privacy policy.” | **L** |
+| 20 | **SUPPORT** | **User Support & Incident Response** | Handle incidents, tickets, and user notifications. | “List all open tickets.”<br>“Notify users about downtime.” | **H** |
+
+---
+
+## **Priority Tags Summary**
+
+| Priority | Meaning | Categories |
+|----------|----------|------------|
+| **H (High)** | Frequent and critical operations | JOB, RES, USER, MON, PERF, STOR, SEC, SWENV, NODE, AUTO, LOGS, SUPPORT |
+| **M (Medium)** | Important but periodic checks | NET, ENERGY, FAC, DOCS, LIC |
+| **L (Low)** | Rare or specialized administrative actions | BACKUP, API, AIOPS |
+
+---
+
+## ✅ **Suggestions**
+- Add **AIOps anomaly correlation** queries linking SLURM logs, telemetry, and temperature metrics.  
+- Integrate **LLM policy guardrails** for high-risk operations (e.g., reboot, queue control).  
+- Create **visual topology mapping** between racks and node pools to enhance facility queries.  
+- Expand **energy dashboard integration** for carbon-aware scheduling.
+
+---
+
+<!-- Version: 1.1 — Improved by GPT-5 | 2025-10-31 -->
