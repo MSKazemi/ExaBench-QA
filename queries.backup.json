@@ -1,0 +1,898 @@
+[
+  {
+    "query_id": "Q-ENERGY-001",
+    "user_type": "System Administrator",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Aggregate IT energy over time by scope",
+    "query_text": "How much energy is consumed by the nodes, racks, and machine over a given period of time?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus",
+      "PowerMeters"
+    ],
+    "difficulty": "medium",
+    "priority": "high",
+    "tags": [
+      "energy",
+      "aggregation",
+      "timeseries"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "range_check",
+    "dependencies": [
+      "rack_node_mapping"
+    ],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-002",
+    "user_type": "Facility Admin / Technicians",
+    "category": "Facility, Infrastructure & Environmental Systems",
+    "intent": "Measure facility-side cooling energy over time",
+    "query_text": "How much energy is consumed by the cooling system (air and water) over a given period of time?",
+    "data_sources": [
+      "BMS",
+      "DCIM",
+      "PowerMeters"
+    ],
+    "difficulty": "medium",
+    "priority": "high",
+    "tags": [
+      "cooling",
+      "energy",
+      "facility"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-003",
+    "user_type": "Facility Admin / Technicians",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Compute PUE for a machine or room over time",
+    "query_text": "What is the PUE (Power Usage Effectiveness) of a machine or compute room over a given period of time?",
+    "data_sources": [
+      "BMS",
+      "IPMI",
+      "PowerMeters"
+    ],
+    "difficulty": "hard",
+    "priority": "high",
+    "tags": [
+      "PUE",
+      "sustainability",
+      "ratio"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-004",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "Count concurrent jobs on a node over time",
+    "query_text": "How many jobs are running on a particular node over a given period of time?",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "node"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-RELIAB-005",
+    "user_type": "HPC Researcher",
+    "category": "Monitoring & Observability",
+    "intent": "Characterize resource usage prior to node failure",
+    "query_text": "Provide the distribution over time of the usage of resources (CPUs, GPUs, Memory) before a node fails, over a given period of time.",
+    "data_sources": [
+      "Prometheus",
+      "SLURM",
+      "Logs"
+    ],
+    "difficulty": "hard",
+    "priority": "medium",
+    "tags": [
+      "failure",
+      "distribution",
+      "profiling"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [
+      "failure_events_database"
+    ],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-006",
+    "user_type": "HPC Researcher",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Relate node utilization to high PUE conditions",
+    "query_text": "Give me the node\u2019s resource utilization distribution when the PUE is higher than a given value.",
+    "data_sources": [
+      "Prometheus",
+      "BMS",
+      "IPMI",
+      "PowerMeters"
+    ],
+    "difficulty": "hard",
+    "priority": "medium",
+    "tags": [
+      "PUE",
+      "utilization",
+      "conditional"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-007",
+    "user_type": "HPC Researcher",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Relate utilization to high job PUE for a specific job",
+    "query_text": "Give me the node\u2019s resource utilization distribution for a specific JobID whose job PUE is higher than a given value.",
+    "data_sources": [
+      "SLURM",
+      "Prometheus",
+      "IPMI",
+      "PowerMeters"
+    ],
+    "difficulty": "hard",
+    "priority": "medium",
+    "tags": [
+      "job",
+      "PUE",
+      "utilization"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-008",
+    "user_type": "HPC Researcher",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Summarize utilization for all jobs exceeding a power threshold",
+    "query_text": "Give me the node\u2019s resource utilization distribution for a specific JobID whose job power is higher than a given value.",
+    "data_sources": [
+      "SLURM",
+      "Prometheus",
+      "IPMI"
+    ],
+    "difficulty": "medium",
+    "priority": "medium",
+    "tags": [
+      "job",
+      "power",
+      "distribution"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-009",
+    "user_type": "HPC Researcher",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Aggregate utilization for jobs exceeding average node power thresholds",
+    "query_text": "Provide the node\u2019s resource utilization (or users) distribution for all jobs whose node\u2019s average job power is higher than a given value.",
+    "data_sources": [
+      "SLURM",
+      "Prometheus",
+      "IPMI"
+    ],
+    "difficulty": "medium",
+    "priority": "medium",
+    "tags": [
+      "aggregation",
+      "power",
+      "jobs"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-THERM-010",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Summarize temperatures while node is in use",
+    "query_text": "What are the min, max, and average temperatures when a node is in use, over a given period of time?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "temperature",
+      "summary"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-THERM-011",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Summarize temperature derivative during node activity",
+    "query_text": "What are the min, max, and average of the derivative of temperature when a node is in use, over a given period of time?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "medium",
+    "priority": "medium",
+    "tags": [
+      "temperature",
+      "derivative"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-THERM-012",
+    "user_type": "HPC Researcher",
+    "category": "Monitoring & Observability",
+    "intent": "Study pre-failure temperature distributions",
+    "query_text": "What is the distribution of the temperature of a node before it fails, over a given period of time (period before failure)?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus",
+      "Logs"
+    ],
+    "difficulty": "hard",
+    "priority": "medium",
+    "tags": [
+      "temperature",
+      "failure",
+      "distribution"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [
+      "failure_events_database"
+    ],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-RELIAB-013",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "List nodes that failed in a time window",
+    "query_text": "Provide the list of failing nodes over a given period of time.",
+    "data_sources": [
+      "MonitoringDB",
+      "Logs",
+      "DCIM"
+    ],
+    "difficulty": "easy",
+    "priority": "high",
+    "tags": [
+      "failures",
+      "inventory"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-THERM-014",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Find jobs with high temperature/power conditions",
+    "query_text": "Give me the Job IDs whose node\u2019s instantaneous (or average over time) power/temperature is higher than a given threshold.",
+    "data_sources": [
+      "SLURM",
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "medium",
+    "priority": "high",
+    "tags": [
+      "threshold",
+      "jobs",
+      "alerts"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ARCH-015",
+    "user_type": "System Administrator",
+    "category": "System Architecture, Design & Capacity Planning",
+    "intent": "Locate a node in physical topology",
+    "query_text": "What is the position of node X?",
+    "data_sources": [
+      "DCIM",
+      "InventoryDB"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "topology",
+      "inventory"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [
+      "asset_inventory"
+    ],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ARCH-016",
+    "user_type": "System Administrator",
+    "category": "System Architecture, Design & Capacity Planning",
+    "intent": "Count racks in a system",
+    "query_text": "How many racks are there in an HPC system X?",
+    "data_sources": [
+      "DCIM",
+      "InventoryDB"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "racks",
+      "inventory"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ARCH-017",
+    "user_type": "System Administrator",
+    "category": "System Architecture, Design & Capacity Planning",
+    "intent": "Retrieve nodes contained in a given rack",
+    "query_text": "Which nodes are part of the rack X?",
+    "data_sources": [
+      "DCIM",
+      "InventoryDB"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "rack",
+      "nodes",
+      "inventory"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ARCH-018",
+    "user_type": "System Administrator",
+    "category": "System Architecture, Design & Capacity Planning",
+    "intent": "Count HPC systems under management",
+    "query_text": "How many HPC systems do we have?",
+    "data_sources": [
+      "DCIM",
+      "InventoryDB"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "systems",
+      "inventory"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-019",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "List users who submitted jobs in a window",
+    "query_text": "Give me a list of users who submitted jobs in a specified time period.",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "users"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-020",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "List jobs for a specific user in a window",
+    "query_text": "Give me a list of jobs submitted by the user X in a specified time period.",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "user"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-021",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "List jobs in a time window",
+    "query_text": "Give me a list of jobs submitted in a specified time period.",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "time"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-022",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "Identify job owner",
+    "query_text": "Which user submitted job X?",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "job",
+      "owner"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-023",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "Retrieve detailed job metadata",
+    "query_text": "Give details of job X.",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "high",
+    "tags": [
+      "job",
+      "metadata"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-024",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "Count running jobs in a window",
+    "query_text": "How many jobs were running in a specified time period?",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "job",
+      "count"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-025",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "Count long-duration jobs",
+    "query_text": "How many jobs had a time duration above a certain value?",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "duration"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "heuristic_scoring",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-026",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "List users with submissions in window",
+    "query_text": "Which user submitted jobs during a specified period?",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "users"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-JOB-027",
+    "user_type": "System Administrator",
+    "category": "Job & Workflow Management",
+    "intent": "Count a user's jobs on a node",
+    "query_text": "How many jobs did a user U submit on a compute node N in a specified period?",
+    "data_sources": [
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "jobs",
+      "per-node",
+      "user"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-SEC-028",
+    "user_type": "System Administrator",
+    "category": "Security, Access & Policy Management",
+    "intent": "List group membership",
+    "query_text": "Which users belong to a group G?",
+    "data_sources": [
+      "DirectoryService",
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "group",
+      "access"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "set_membership_check(user_ids)",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-029",
+    "user_type": "System Administrator",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Compute node energy in window",
+    "query_text": "What is the power consumption of the node X in a specified time period?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "easy",
+    "priority": "high",
+    "tags": [
+      "node",
+      "energy"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-ENERGY-030",
+    "user_type": "System Administrator",
+    "category": "Power, Energy & Sustainability",
+    "intent": "Compute rack energy in window",
+    "query_text": "What is the power consumption of the rack X in a specified time period?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "medium",
+    "priority": "high",
+    "tags": [
+      "rack",
+      "energy"
+    ],
+    "expected_answer": "chart",
+    "evaluation_signal": "range_check",
+    "dependencies": [
+      "rack_node_mapping"
+    ],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-MON-031",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Summarize metric stats for a node over an interval",
+    "query_text": "What is the max/min/avg recorded metric X for compute node N from T1 to T2?",
+    "data_sources": [
+      "Prometheus"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "metrics",
+      "summary",
+      "node"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-MON-032",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Summarize rack metric stats for today",
+    "query_text": "What is the max/min/avg recorded metric X for rack R today?",
+    "data_sources": [
+      "Prometheus"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "metrics",
+      "summary",
+      "rack"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-MON-033",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Summarize job metric stats",
+    "query_text": "What is the max/min/avg recorded metric X for Job J?",
+    "data_sources": [
+      "Prometheus",
+      "SLURM"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "metrics",
+      "summary",
+      "job"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-THERM-034",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "List nodes exceeding temperature thresholds",
+    "query_text": "Can you tell me the list of compute nodes that had temperatures higher than normal in a specified time period?",
+    "data_sources": [
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "easy",
+    "priority": "high",
+    "tags": [
+      "temperature",
+      "alerts"
+    ],
+    "expected_answer": "table",
+    "evaluation_signal": "range_check",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  },
+  {
+    "query_id": "Q-THERM-035",
+    "user_type": "System Administrator",
+    "category": "Monitoring & Observability",
+    "intent": "Compute average node temperature for a month",
+    "query_text": "Please provide me the compute node N average temperature during May 2025.",
+    "data_sources": [
+      "IPMI",
+      "Prometheus"
+    ],
+    "difficulty": "easy",
+    "priority": "medium",
+    "tags": [
+      "temperature",
+      "summary",
+      "calendar"
+    ],
+    "expected_answer": "fact",
+    "evaluation_signal": "exact_match",
+    "dependencies": [],
+    "dedupe_of": null,
+    "created_at": "2025-11-01",
+    "notes": ""
+  }
+
+
+
+{"query_id": "Q-0001", "user_type": "System Administrator", "category": "Energy & Power", "intent": "Cluster energy trend over time", "query_text": "Show total energy per rack and node for 2024-01-01–2025-10-31 with daily granularity.", "data_sources": ["IPMI", "Prometheus"], "difficulty": "easy", "priority": "high", "tags": ["energy-power", "system"], "expected_answer": "chart", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506713Z", "notes": ""}
+{"query_id": "Q-0002", "user_type": "System Administrator", "category": "Energy & Power", "intent": "Cluster energy trend over time", "query_text": "Show total energy per rack and node for 2024-01-01–2025-10-31 with daily granularity.", "data_sources": ["IPMI", "Prometheus"], "difficulty": "easy", "priority": "medium", "tags": ["energy-power", "system"], "expected_answer": "fact", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506754Z", "notes": ""}
+{"query_id": "Q-0003", "user_type": "System Administrator", "category": "Energy & Power", "intent": "Rack power window", "query_text": "What is the power consumption of rack R25 from 2025-01-24 to 2025-09-18?", "data_sources": ["IPMI", "Prometheus"], "difficulty": "easy", "priority": "low", "tags": ["energy-power", "system"], "expected_answer": "table", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506789Z", "notes": ""}
+{"query_id": "Q-0004", "user_type": "System Administrator", "category": "Energy & Power", "intent": "Rack power window", "query_text": "What is the power consumption of rack R23 from 2025-05-15 to 2025-07-06?", "data_sources": ["IPMI", "Prometheus"], "difficulty": "easy", "priority": "high", "tags": ["energy-power", "system"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506816Z", "notes": ""}
+{"query_id": "Q-0005", "user_type": "HPC Researcher", "category": "Energy & Power", "intent": "Job energy attribution", "query_text": "List JobIDs whose average node power exceeded 200 W between 2025-04-27 and 2025-02-26.", "data_sources": ["SLURM", "Prometheus", "IPMI"], "difficulty": "medium", "priority": "low", "tags": ["energy-power", "hpc"], "expected_answer": "chart", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506842Z", "notes": ""}
+{"query_id": "Q-0006", "user_type": "HPC Researcher", "category": "Energy & Power", "intent": "Job energy attribution", "query_text": "List JobIDs whose average node power exceeded 85 W between 2025-07-19 and 2025-08-12.", "data_sources": ["SLURM", "Prometheus", "IPMI"], "difficulty": "medium", "priority": "high", "tags": ["energy-power", "hpc"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506871Z", "notes": ""}
+{"query_id": "Q-0007", "user_type": "Facility Admin / Technicians", "category": "Thermal & Environment", "intent": "Thermal extremes by node", "query_text": "Report min/max/avg inlet temperature for node node907 during Jun 2024.", "data_sources": ["IPMI", "BMS"], "difficulty": "easy", "priority": "high", "tags": ["thermal-environment", "facility"], "expected_answer": "table", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506900Z", "notes": ""}
+{"query_id": "Q-0008", "user_type": "Facility Admin / Technicians", "category": "Thermal & Environment", "intent": "Thermal extremes by node", "query_text": "Report min/max/avg inlet temperature for node node166 during Dec 2024.", "data_sources": ["IPMI", "BMS"], "difficulty": "easy", "priority": "low", "tags": ["thermal-environment", "facility"], "expected_answer": "explanation", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506935Z", "notes": ""}
+{"query_id": "Q-0009", "user_type": "HPC Researcher", "category": "Thermal & Environment", "intent": "Pre-failure temperature shape", "query_text": "Give the temperature distribution for node node170 in the 72 hours before failure INC9645.", "data_sources": ["IPMI", "Syslog", "Alertmanager"], "difficulty": "medium", "priority": "low", "tags": ["thermal-environment", "hpc"], "expected_answer": "chart", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506962Z", "notes": ""}
+{"query_id": "Q-0010", "user_type": "HPC Researcher", "category": "Thermal & Environment", "intent": "Pre-failure temperature shape", "query_text": "Give the temperature distribution for node node568 in the 72 hours before failure INC4608.", "data_sources": ["IPMI", "Syslog", "Alertmanager"], "difficulty": "easy", "priority": "medium", "tags": ["thermal-environment", "hpc"], "expected_answer": "explanation", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.506989Z", "notes": ""}
+{"query_id": "Q-0011", "user_type": "Normal HPC User", "category": "Job & Workflow", "intent": "User job list", "query_text": "List my jobs submitted between 2025-03-24 and 2025-09-08 with state and runtime.", "data_sources": ["SLURM", "SchedulerLogs"], "difficulty": "easy", "priority": "high", "tags": ["job-workflow", "normal"], "expected_answer": "table", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507022Z", "notes": ""}
+{"query_id": "Q-0012", "user_type": "Normal HPC User", "category": "Job & Workflow", "intent": "User job list", "query_text": "List my jobs submitted between 2025-07-24 and 2025-07-26 with state and runtime.", "data_sources": ["SLURM", "SchedulerLogs"], "difficulty": "easy", "priority": "low", "tags": ["job-workflow", "normal"], "expected_answer": "explanation", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507043Z", "notes": ""}
+{"query_id": "Q-0013", "user_type": "System Administrator", "category": "Job & Workflow", "intent": "Concurrent jobs", "query_text": "How many jobs were running cluster-wide between 2025-01-21 and 2025-02-03?", "data_sources": ["SLURM"], "difficulty": "medium", "priority": "medium", "tags": ["job-workflow", "system"], "expected_answer": "fact", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507065Z", "notes": ""}
+{"query_id": "Q-0014", "user_type": "System Administrator", "category": "Job & Workflow", "intent": "Concurrent jobs", "query_text": "How many jobs were running cluster-wide between 2025-08-05 and 2025-05-10?", "data_sources": ["SLURM"], "difficulty": "easy", "priority": "low", "tags": ["job-workflow", "system"], "expected_answer": "table", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507087Z", "notes": ""}
+{"query_id": "Q-0015", "user_type": "Normal HPC User", "category": "Performance", "intent": "GPU efficiency", "query_text": "Show GPU utilization and memory bandwidth for my JobID 749468 by minute.", "data_sources": ["Prometheus", "NVIDIA SMI"], "difficulty": "medium", "priority": "low", "tags": ["performance", "normal"], "expected_answer": "fact", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507109Z", "notes": ""}
+{"query_id": "Q-0016", "user_type": "Normal HPC User", "category": "Performance", "intent": "GPU efficiency", "query_text": "Show GPU utilization and memory bandwidth for my JobID 176819 by minute.", "data_sources": ["Prometheus", "NVIDIA SMI"], "difficulty": "medium", "priority": "low", "tags": ["performance", "normal"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507130Z", "notes": ""}
+{"query_id": "Q-0017", "user_type": "System Designer / Architect", "category": "Performance", "intent": "Queue saturation", "query_text": "Plot queue wait time distribution for partitions debug,long during Sep 2024.", "data_sources": ["SLURM"], "difficulty": "medium", "priority": "high", "tags": ["performance", "system"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507153Z", "notes": ""}
+{"query_id": "Q-0018", "user_type": "System Designer / Architect", "category": "Performance", "intent": "Queue saturation", "query_text": "Plot queue wait time distribution for partitions gpu,long during Mar 2025.", "data_sources": ["SLURM"], "difficulty": "easy", "priority": "high", "tags": ["performance", "system"], "expected_answer": "chart", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507174Z", "notes": ""}
+{"query_id": "Q-0019", "user_type": "System Administrator", "category": "Storage & IO", "intent": "Hot filesystems", "query_text": "Which filesystems exceeded 80% utilization during Aug 2024?", "data_sources": ["Lustre", "GPFS", "Prometheus"], "difficulty": "easy", "priority": "low", "tags": ["storage-io", "system"], "expected_answer": "chart", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507197Z", "notes": ""}
+{"query_id": "Q-0020", "user_type": "System Administrator", "category": "Storage & IO", "intent": "Hot filesystems", "query_text": "Which filesystems exceeded 150% utilization during Apr 2024?", "data_sources": ["Lustre", "GPFS", "Prometheus"], "difficulty": "easy", "priority": "medium", "tags": ["storage-io", "system"], "expected_answer": "fact", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507219Z", "notes": ""}
+{"query_id": "Q-0021", "user_type": "System Administrator", "category": "Reliability & Incidents", "intent": "Flapping nodes", "query_text": "List nodes with > 150 reboots during 2024-01-01–2025-10-31.", "data_sources": ["Redfish", "Syslog", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["reliability-incidents", "system"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507243Z", "notes": ""}
+{"query_id": "Q-0022", "user_type": "System Administrator", "category": "Reliability & Incidents", "intent": "Flapping nodes", "query_text": "List nodes with > 70 reboots during 2024-01-01–2025-10-31.", "data_sources": ["Redfish", "Syslog", "CMDB"], "difficulty": "medium", "priority": "medium", "tags": ["reliability-incidents", "system"], "expected_answer": "explanation", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507265Z", "notes": ""}
+{"query_id": "Q-0023", "user_type": "HPC Researcher", "category": "Reliability & Incidents", "intent": "Anomaly candidates", "query_text": "Detect anomalies in node power consumption over the last 2 years; return node list and windows.", "data_sources": ["Prometheus", "IPMI", "Kepler"], "difficulty": "hard", "priority": "high", "tags": ["reliability-incidents", "hpc"], "expected_answer": "chart", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507305Z", "notes": ""}
+{"query_id": "Q-0024", "user_type": "HPC Researcher", "category": "Reliability & Incidents", "intent": "Anomaly candidates", "query_text": "Detect anomalies in node power consumption over the last 4 years; return node list and windows.", "data_sources": ["Prometheus", "IPMI", "Kepler"], "difficulty": "medium", "priority": "medium", "tags": ["reliability-incidents", "hpc"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507326Z", "notes": ""}
+{"query_id": "Q-0025", "user_type": "System Administrator", "category": "Security & Access", "intent": "Access bursts", "query_text": "Show users with > 80 failed logins in 24h during Aug 2025.", "data_sources": ["AuthLogs", "LDAP"], "difficulty": "medium", "priority": "high", "tags": ["security-access", "system"], "expected_answer": "explanation", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507348Z", "notes": ""}
+{"query_id": "Q-0026", "user_type": "System Administrator", "category": "Security & Access", "intent": "Access bursts", "query_text": "Show users with > 200 failed logins in 24h during May 2025.", "data_sources": ["AuthLogs", "LDAP"], "difficulty": "hard", "priority": "low", "tags": ["security-access", "system"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507369Z", "notes": ""}
+{"query_id": "Q-0027", "user_type": "System Designer / Architect", "category": "Compliance & Policies", "intent": "Change window compliance", "query_text": "List config changes on production partitions outside approved windows in Sep 2024.", "data_sources": ["ChangeMgmt", "PolicyDocs", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "system"], "expected_answer": "fact", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507392Z", "notes": ""}
+{"query_id": "Q-0028", "user_type": "System Designer / Architect", "category": "Compliance & Policies", "intent": "Change window compliance", "query_text": "List config changes on production partitions outside approved windows in Feb 2025.", "data_sources": ["ChangeMgmt", "PolicyDocs", "CMDB"], "difficulty": "medium", "priority": "low", "tags": ["compliance-policies", "system"], "expected_answer": "explanation", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507412Z", "notes": ""}
+{"query_id": "Q-0029", "user_type": "Normal HPC User", "category": "Docs & How-to", "intent": "How-to modules", "query_text": "Find the official guide to loading CUDA 12.4 and OpenMPI 4.1.5.", "data_sources": ["Wiki", "Runbooks"], "difficulty": "easy", "priority": "medium", "tags": ["docs-how-to", "normal"], "expected_answer": "fact", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507435Z", "notes": ""}
+{"query_id": "Q-0030", "user_type": "Normal HPC User", "category": "Docs & How-to", "intent": "How-to modules", "query_text": "Find the official guide to loading CUDA 11.8 and OpenMPI 4.1.6.", "data_sources": ["Wiki", "Runbooks"], "difficulty": "easy", "priority": "medium", "tags": ["docs-how-to", "normal"], "expected_answer": "fact", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507455Z", "notes": ""}
+{"query_id": "Q-0031", "user_type": "Facility Admin / Technicians", "category": "Topology & Inventory", "intent": "Where is the node?", "query_text": "What is the physical position (row/rack/U) of node node901?", "data_sources": ["CMDB", "AssetDB", "IPAM"], "difficulty": "easy", "priority": "high", "tags": ["topology-inventory", "facility"], "expected_answer": "table", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507476Z", "notes": ""}
+{"query_id": "Q-0032", "user_type": "Facility Admin / Technicians", "category": "Topology & Inventory", "intent": "Where is the node?", "query_text": "What is the physical position (row/rack/U) of node node021?", "data_sources": ["CMDB", "AssetDB", "IPAM"], "difficulty": "easy", "priority": "low", "tags": ["topology-inventory", "facility"], "expected_answer": "table", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507496Z", "notes": ""}
+{"query_id": "Q-0033", "user_type": "Normal HPC User", "category": "Storage & IO", "intent": "Top talkers by IO", "query_text": "Show Top talkers by IO for queue bigmem during Jan 2025.", "data_sources": ["Lustre", "GPFS", "Prometheus"], "difficulty": "medium", "priority": "high", "tags": ["storage-io", "normal"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507886Z", "notes": ""}
+{"query_id": "Q-0034", "user_type": "System Administrator", "category": "Docs & How-to", "intent": "Find software install guide", "query_text": "Return Find software install guide for node node607 from 2024-01-01 to 2025-10-31.", "data_sources": ["Wiki", "Runbooks"], "difficulty": "easy", "priority": "medium", "tags": ["docs-how-to", "system"], "expected_answer": "fact", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507937Z", "notes": ""}
+{"query_id": "Q-0035", "user_type": "System Administrator", "category": "Energy & Power", "intent": "Node-level power spikes", "query_text": "List Node-level power spikes between 2025-06-01 and 2025-09-07 with hourly granularity.", "data_sources": ["IPMI", "Prometheus", "Kepler"], "difficulty": "medium", "priority": "high", "tags": ["energy-power", "system"], "expected_answer": "table", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.507983Z", "notes": ""}
+{"query_id": "Q-0036", "user_type": "HPC Researcher", "category": "Energy & Power", "intent": "PUE time series", "query_text": "Return PUE time series for node node485 from 2024-01-01 to 2025-10-31.", "data_sources": ["IPMI", "Prometheus", "Kepler"], "difficulty": "medium", "priority": "medium", "tags": ["energy-power", "hpc"], "expected_answer": "fact", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508028Z", "notes": ""}
+{"query_id": "Q-0037", "user_type": "System Administrator", "category": "Compliance & Policies", "intent": "Unauthorized config changes", "query_text": "Provide Unauthorized config changes across partitions short,long,bigmem in Jul 2024.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "system"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508077Z", "notes": ""}
+{"query_id": "Q-0038", "user_type": "HPC Researcher", "category": "Docs & How-to", "intent": "Find MPI example scripts", "query_text": "Show Find MPI example scripts for rack R04 during May 2024.", "data_sources": ["Wiki", "Runbooks"], "difficulty": "easy", "priority": "medium", "tags": ["docs-how-to", "hpc"], "expected_answer": "table", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508124Z", "notes": ""}
+{"query_id": "Q-0039", "user_type": "Facility Admin / Technicians", "category": "Security & Access", "intent": "Unusual login geography", "query_text": "Compute Unusual login geography and highlight top 10 offenders in Jul 2025.", "data_sources": ["LDAP", "AuthLogs", "IAM"], "difficulty": "hard", "priority": "medium", "tags": ["security-access", "facility"], "expected_answer": "table", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508171Z", "notes": ""}
+{"query_id": "Q-0040", "user_type": "HPC Researcher", "category": "Performance", "intent": "Memory bandwidth saturation", "query_text": "Show Memory bandwidth saturation for cluster during Jun 2025.", "data_sources": ["Prometheus", "NodeExporter", "NVIDIA SMI"], "difficulty": "medium", "priority": "high", "tags": ["performance", "hpc"], "expected_answer": "explanation", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508211Z", "notes": ""}
+{"query_id": "Q-0041", "user_type": "System Administrator", "category": "Performance", "intent": "Network throughput variance", "query_text": "Compute Network throughput variance and highlight top 10 offenders in Jun 2025.", "data_sources": ["Prometheus", "NodeExporter", "NVIDIA SMI"], "difficulty": "medium", "priority": "high", "tags": ["performance", "system"], "expected_answer": "fact", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508257Z", "notes": ""}
+{"query_id": "Q-0042", "user_type": "System Designer / Architect", "category": "Storage & IO", "intent": "Top talkers by IO", "query_text": "Return Top talkers by IO for node node782 from 2024-01-01 to 2025-10-31.", "data_sources": ["Lustre", "GPFS", "Prometheus"], "difficulty": "easy", "priority": "medium", "tags": ["storage-io", "system"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508306Z", "notes": ""}
+{"query_id": "Q-0043", "user_type": "System Designer / Architect", "category": "Thermal & Environment", "intent": "CRAC efficiency comparison", "query_text": "Return CRAC efficiency comparison for node node038 from 2024-01-01 to 2025-10-31.", "data_sources": ["IPMI", "BMS", "Prometheus"], "difficulty": "medium", "priority": "low", "tags": ["thermal-environment", "system"], "expected_answer": "fact", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508353Z", "notes": ""}
+{"query_id": "Q-0044", "user_type": "Normal HPC User", "category": "Reliability & Incidents", "intent": "PSU failure correlation", "query_text": "Compute PSU failure correlation and highlight top 10 offenders in Mar 2025.", "data_sources": ["Syslog", "Redfish", "Alertmanager"], "difficulty": "medium", "priority": "medium", "tags": ["reliability-incidents", "normal"], "expected_answer": "explanation", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508399Z", "notes": ""}
+{"query_id": "Q-0045", "user_type": "Normal HPC User", "category": "Energy & Power", "intent": "PUE time series", "query_text": "Compute PUE time series and highlight top 10 offenders in Oct 2024.", "data_sources": ["IPMI", "Prometheus", "Kepler"], "difficulty": "medium", "priority": "high", "tags": ["energy-power", "normal"], "expected_answer": "fact", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508447Z", "notes": ""}
+{"query_id": "Q-0046", "user_type": "Facility Admin / Technicians", "category": "Compliance & Policies", "intent": "Policy violations summary", "query_text": "Return Policy violations summary for node node858 from 2024-01-01 to 2025-10-31.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "facility"], "expected_answer": "explanation", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508492Z", "notes": ""}
+{"query_id": "Q-0047", "user_type": "System Administrator", "category": "Reliability & Incidents", "intent": "Mean time between failures", "query_text": "Compute Mean time between failures and highlight top 10 offenders in Jul 2024.", "data_sources": ["Syslog", "Redfish", "Alertmanager"], "difficulty": "medium", "priority": "medium", "tags": ["reliability-incidents", "system"], "expected_answer": "table", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508535Z", "notes": ""}
+{"query_id": "Q-0048", "user_type": "System Designer / Architect", "category": "Docs & How-to", "intent": "Find MPI example scripts", "query_text": "Show Find MPI example scripts for queue short during Mar 2025.", "data_sources": ["Wiki", "Runbooks"], "difficulty": "easy", "priority": "medium", "tags": ["docs-how-to", "system"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508578Z", "notes": ""}
+{"query_id": "Q-0049", "user_type": "System Designer / Architect", "category": "Compliance & Policies", "intent": "Policy violations summary", "query_text": "Compute Policy violations summary and highlight top 10 offenders in Oct 2024.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "system"], "expected_answer": "fact", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508621Z", "notes": ""}
+{"query_id": "Q-0050", "user_type": "Facility Admin / Technicians", "category": "Reliability & Incidents", "intent": "Node flapping score", "query_text": "List Node flapping score between 2025-03-06 and 2025-05-16 with hourly granularity.", "data_sources": ["Syslog", "Redfish", "Alertmanager"], "difficulty": "hard", "priority": "medium", "tags": ["reliability-incidents", "facility"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508647Z", "notes": ""}
+{"query_id": "Q-0051", "user_type": "System Administrator", "category": "Compliance & Policies", "intent": "Patch compliance coverage", "query_text": "Compute Patch compliance coverage and highlight top 10 offenders in Dec 2024.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "high", "tags": ["compliance-policies", "system"], "expected_answer": "fact", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508672Z", "notes": ""}
+{"query_id": "Q-0052", "user_type": "Facility Admin / Technicians", "category": "Job & Workflow", "intent": "User job history window", "query_text": "Show User job history window for queue bigmem during Feb 2024.", "data_sources": ["SLURM", "SchedulerLogs"], "difficulty": "easy", "priority": "high", "tags": ["job-workflow", "facility"], "expected_answer": "table", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508698Z", "notes": ""}
+{"query_id": "Q-0053", "user_type": "Facility Admin / Technicians", "category": "Storage & IO", "intent": "IOPS and latency trend", "query_text": "Compute IOPS and latency trend and highlight top 10 offenders in Mar 2024.", "data_sources": ["Lustre", "GPFS", "Prometheus"], "difficulty": "medium", "priority": "high", "tags": ["storage-io", "facility"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508725Z", "notes": ""}
+{"query_id": "Q-0054", "user_type": "Normal HPC User", "category": "Compliance & Policies", "intent": "Policy violations summary", "query_text": "List Policy violations summary between 2025-07-01 and 2025-07-22 with hourly granularity.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "normal"], "expected_answer": "chart", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508751Z", "notes": ""}
+{"query_id": "Q-0055", "user_type": "System Designer / Architect", "category": "Job & Workflow", "intent": "Failed job diagnostics", "query_text": "Provide Failed job diagnostics across partitions gpu,bigmem in Mar 2024.", "data_sources": ["SLURM", "SchedulerLogs"], "difficulty": "easy", "priority": "low", "tags": ["job-workflow", "system"], "expected_answer": "chart", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508812Z", "notes": ""}
+{"query_id": "Q-0056", "user_type": "System Administrator", "category": "Compliance & Policies", "intent": "Patch compliance coverage", "query_text": "Compute Patch compliance coverage and highlight top 10 offenders in May 2024.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "system"], "expected_answer": "fact", "evaluation_signal": "exact_match", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508838Z", "notes": ""}
+{"query_id": "Q-0057", "user_type": "System Designer / Architect", "category": "Reliability & Incidents", "intent": "Mean time between failures", "query_text": "Provide Mean time between failures across partitions long,debug,gpu in Jul 2024.", "data_sources": ["Syslog", "Redfish", "Alertmanager"], "difficulty": "medium", "priority": "high", "tags": ["reliability-incidents", "system"], "expected_answer": "chart", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508863Z", "notes": ""}
+{"query_id": "Q-0058", "user_type": "System Administrator", "category": "Performance", "intent": "CPU/GPU utilization profile", "query_text": "Compute CPU/GPU utilization profile and highlight top 10 offenders in May 2024.", "data_sources": ["Prometheus", "NodeExporter", "NVIDIA SMI"], "difficulty": "easy", "priority": "medium", "tags": ["performance", "system"], "expected_answer": "table", "evaluation_signal": "range_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508887Z", "notes": ""}
+{"query_id": "Q-0059", "user_type": "System Designer / Architect", "category": "Security & Access", "intent": "Unusual login geography", "query_text": "Show Unusual login geography for rack R31 during May 2025.", "data_sources": ["LDAP", "AuthLogs", "IAM"], "difficulty": "hard", "priority": "medium", "tags": ["security-access", "system"], "expected_answer": "table", "evaluation_signal": "heuristic_scoring", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508913Z", "notes": ""}
+{"query_id": "Q-0060", "user_type": "Normal HPC User", "category": "Compliance & Policies", "intent": "Policy violations summary", "query_text": "Provide Policy violations summary across partitions debug,long in May 2024.", "data_sources": ["PolicyDocs", "ChangeMgmt", "CMDB"], "difficulty": "hard", "priority": "low", "tags": ["compliance-policies", "normal"], "expected_answer": "explanation", "evaluation_signal": "trend_direction_check", "dependencies": [], "dedupe_of": null, "created_at": "2025-11-01T18:25:11.508938Z", "notes": ""}
+
+]
