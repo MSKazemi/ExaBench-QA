@@ -1,0 +1,37 @@
+Query,User Type,QCAT,Priority,Difficulty
+How much power is consumed by the node 1 on 12/1/2021?,"HPC Researchers, Facility Admin, System Admin, System Designers",ENERGY,High,Medium
+How much power is consumed by the rack 1 on 2/2/2022?,"HPC Researchers, Facility Admin, System Admin, System Designers",ENERGY,High,Medium
+How much power is consumed by the cooling system on the first day of September 2021?,"Facility Admin, System Designers, HPC Researchers",FAC / ENERGY,High,Medium
+What is the PUE (Power Usage Effectiveness) of  M100 in the month of February 2022?,"Facility Admin, System Designers, HPC Researchers",ENERGY,High,Medium
+How many jobs were running on node 3 in the first week of May 2022?,"System Admin, Normal HPC User, HPC Researchers",JOB,High,Easy
+"What are the min, max, and average temperatures when a node is in use, over a given period of time?","Facility Admin, System Admin, HPC Researchers",MON / ENERGY,High,Medium
+"What are the min, max, and average power when a node is in use, over a given period of time?","Facility Admin, System Admin, HPC Researchers",MON / ENERGY,High,Medium
+Give me the Job IDs whose node power usage is higher than the threshold of 50 Watts.,"System Admin, HPC Researchers",ENERGY / MON / JOB,High,Medium
+Give me the Job IDs whose node temperature is higher than the threshold of 40 degrees.,"System Admin, HPC Researchers",ENERGY / MON / JOB,High,Medium
+What is the position of node 20 in M100 system?,"Facility Admin, System Admin, System Designers",FAC / ARCH,Medium,Easy
+How many racks are there in M100 system?,"System Designers, Facility Admin, System Admin",ARCH / FAC,Medium,Easy
+Which nodes are part of the rack 2 in M100?,"System Admin, Facility Admin, System Designers",FAC / ARCH,Medium,Easy
+List the HPC systems and give me the number of nodes in each system.,"System Designers, System Admin",ARCH / FAC,Medium,Easy
+Give me a list of users who submitted jobs in the first week of March 2022?,"System Admin, HPC Researchers",JOB / USER,High,Easy
+list the jobs submitted by the user 182 during the first day of May 2022 in M100?,"System Admin, HPC Researchers, Normal HPC User",JOB,High,Easy
+Give me a list of jobs submitted in May 2022?,"System Admin, HPC Researchers, Normal HPC User",JOB,High,Easy
+Which user submitted job 1918069?,"System Admin, Normal HPC User",JOB / USER,High,Easy
+Give details of the job 1918069?,"System Admin, Normal HPC User",JOB / PERF,High,Medium
+How many jobs were running in the first day of May 2022?,"System Admin, Normal HPC User",JOB / MON,High,Easy
+How many jobs had a time duration of more than 1 hour?,"System Admin, HPC Researchers",JOB / PERF,Medium,Medium
+Which user submitted jobs during on 12/6/2021 8AM to 12/6/2021 12 PM?,System Admin,JOB / USER,Medium,Easy
+How many jobs did user 1443 submit on a compute node 23 in the first week of April 2022?,"System Admin, HPC Researchers",JOB / PERF / MON,Medium,Medium
+Which users belong to a group 25200?,System Admin,SEC / USER,Medium,Easy
+What is the power consumption of the node 12 between 12/04/2021 11:00:00 and  12/04/2021 12:00:00?,"System Admin, HPC Researchers, Facility Admin",ENERGY / MON,High,Medium
+What is the power consumption of the rack 1 between 12/05/2021 11:00:00 and  12/05/2021 12:00:00?,"System Admin, Facility Admin, System Designers",ENERGY / FAC,High,Medium
+"What is the max,min and avg total_power for compute node 2 from 22/05/2021 11:00:00 to 22/05/2021 12:00:00?","System Admin, HPC Researchers, Facility Admin",MON / PERF,High,Medium
+"What is the max,min and avg total_power for rack 1 from 22/05/2021 11:00:00 to 22/05/2021 11:30:00?","System Admin, Facility Admin",MON / ENERGY,High,Medium
+"What is the max, min and average total_power for Job 1001282?","System Admin, HPC Researchers, Normal HPC User",MON / PERF,High,Medium
+Can you tell me the list of compute nodes that had temperatures above 30 degree between 12/04/2021 11:00:00 and  12/04/2021 12:00:00?,"Facility Admin, System Admin, HPC Researchers",MON / ENERGY / AIOPS,High,Medium
+How does node 1 temperature correlate with power consumption?,"HPC Researchers, System Admin",AIOPS / ENERGY / PERF,High,Hard
+How many nodes were allocated to job 1340422?,"Normal HPC User, System Admin",JOB / MON / RES,Medium,Easy
+What was the GPU utilization for job 4031729?,"Normal HPC User, HPC Researchers",PERF / MON / JOB,Medium,Medium
+What is the total GPU energy consumption for  job 3219825?,"Normal HPC User, HPC Researchers",ENERGY / JOB / PERF,Medium,Medium
+Give me total power consumption per rack in M100 system.,"Facility Admin, System Admin",ENERGY / FAC,High,Medium
+"What is the mix, max and the avg humidity level in the M100 room in the first day of May 2022.",Facility Admin,FAC / MON,Medium,Easy
+Which nodes belong to Rack 1 in M100 system?,"System Admin, Facility Admin / Technicians",ARCH / FAC,Medium,Easy
