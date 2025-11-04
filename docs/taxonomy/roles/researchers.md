@@ -1,4 +1,4 @@
-# 🧠 HPC <user_type>
+# 🧠 HPC Researchers / Analysts
 
 ## **Primary Mission**                            
 - Bridge scientific computing with data-driven optimization — analyze, model, and improve performance, energy efficiency, reliability, and sustainability across the entire HPC system stack.
