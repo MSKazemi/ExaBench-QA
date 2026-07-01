@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use ExaBench-QA in research or product evaluations, please cite it using these metadata."
+title: "ExaBench-QA: A Benchmark and Dataset for Evaluating Role-Aware, LLM-based HPC Agents"
+abstract: >-
+  ExaBench-QA is an open-source benchmark and dataset for evaluating role-aware,
+  LLM-based AI agents on High-Performance Computing (HPC) question answering. It
+  provides a curated corpus of HPC operational queries, a 10-category question
+  taxonomy (QCAT), five HPC user roles, and a JSON Schema for structural
+  validation and automated scoring.
+type: dataset
+authors:
+  - family-names: "Seyedkazemi Ardebili"
+    given-names: "Mohsen"
+    email: mohsen.seyedkazemi@gmail.com
+license: Apache-2.0
+repository-code: "https://github.com/MSKazemi/ExaBench-QA"
+url: "https://github.com/MSKazemi/ExaBench-QA"
+date-released: "2025-11-01"
+keywords:
+  - high-performance-computing
+  - hpc
+  - benchmark
+  - dataset
+  - large-language-models
+  - ai-agents
+  - question-answering
+  - taxonomy
+  - observability
+  - energy-efficiency
