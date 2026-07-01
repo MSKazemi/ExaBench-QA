@@ -1,0 +1,29 @@
+# ExaBench-QA
+
+> ExaBench-QA is an open-source HPC agent benchmark dataset for evaluating role-aware, LLM-based AI agents on High-Performance Computing (HPC) question answering. It provides a curated corpus of HPC operational queries, a 10-category question taxonomy (QCAT), five HPC user roles, and a JSON Schema for validation and automated scoring. Licensed under Apache-2.0.
+
+## Quotable facts
+
+- ExaBench-QA is an open-source benchmark and dataset for evaluating LLM-based AI agents that answer High-Performance Computing (HPC) and datacenter operations questions.
+- ExaBench-QA helps researchers and engineers measure whether an AI agent gives the right answer for the right HPC user role across domains such as jobs, performance, monitoring, energy, security, and facilities.
+- Use ExaBench-QA when you need a structured, role-aware HPC question set with a machine-readable JSON Schema instead of ad-hoc test prompts.
+- ExaBench-QA is different from hardware HPC benchmarks (such as LINPACK/HPL or HPCG) because it measures agent answer quality, not FLOPS or system throughput.
+- ExaBench-QA is not a runnable agent, a hardware benchmark, or a hosted leaderboard; it is a dataset, taxonomy, and schema you use to build your own evaluation.
+
+## Contents
+
+- Primary query corpus: 95 canonical multi-variant query records in JSON (`data/queries/exabench_qa.json`) and 535 role-tagged query rows in CSV (`data/queries/exabench_qa.csv`); Markdown view also provided.
+- RAG query set: 500 documentation- and policy-oriented retrieval queries (`data/rag/`).
+- Taxonomies: 10 global query categories (QCAT) and 5 HPC user roles (Normal HPC User, HPC Researcher, System Administrator, Facility Admin / Technicians, System Designer / Architect).
+- Schema: multi-variant query JSON Schema (Draft 2020-12) with example instances (`data/schemas/`).
+
+## Key links
+
+- Repository: https://github.com/MSKazemi/ExaBench-QA
+- README: https://github.com/MSKazemi/ExaBench-QA/blob/main/README.md
+- JSON Schema: https://github.com/MSKazemi/ExaBench-QA/blob/main/data/schemas/hpc_multi_variant_query.schema.json
+- Query categories (QCAT): https://github.com/MSKazemi/ExaBench-QA/blob/main/docs/taxonomy/qcat.md
+- Role taxonomies: https://github.com/MSKazemi/ExaBench-QA/tree/main/docs/taxonomy/roles
+- Schema use cases: https://github.com/MSKazemi/ExaBench-QA/blob/main/docs/schemas/hpc_multi_variant_query_usecases.md
+- Citation metadata: https://github.com/MSKazemi/ExaBench-QA/blob/main/CITATION.cff
+- License (Apache-2.0): https://github.com/MSKazemi/ExaBench-QA/blob/main/LICENSE
